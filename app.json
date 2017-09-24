@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/query/query",
+    "pages/order/order",
+    "pages/traffic/traffic",
+    "pages/warm/warm",
+    "pages/selfStudy/selfStudy",
+    "pages/score/score",
+    "pages/lostandfound/lostandfound",
+    "pages/convenient/convenient"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "image/ViewGallery.png",
+        "iconPath": "image/ViewGallery.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "image/account.png",
+        "iconPath": "image/account.png",
+        "pagePath": "pages/query/query",
+        "text": "查询"
+      },
+      {
+        "selectedIconPath": "image/RFQ.png",
+        "iconPath": "image/RFQ.png",
+        "pagePath": "pages/order/order",
+        "text": "预约"
+      }
+    ]
+  }
+}
