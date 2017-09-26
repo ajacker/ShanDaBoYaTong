@@ -9,7 +9,10 @@
     "pages/selfStudy/selfStudy",
     "pages/score/score",
     "pages/lostandfound/lostandfound",
-    "pages/convenient/convenient"
+    "pages/convenient/convenient",
+    "pages/me/me",
+    "pages/message/message",
+    "pages/score/scorePic/scorePic"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,14 +34,8 @@
       {
         "selectedIconPath": "image/account.png",
         "iconPath": "image/account.png",
-        "pagePath": "pages/query/query",
-        "text": "查询"
-      },
-      {
-        "selectedIconPath": "image/RFQ.png",
-        "iconPath": "image/RFQ.png",
-        "pagePath": "pages/order/order",
-        "text": "预约"
+        "pagePath": "pages/me/me",
+        "text": "我"
       }
     ]
   }
