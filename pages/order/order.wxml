@@ -34,7 +34,7 @@
                 </label>
             </radio-group>
         </view>
-        <view class="weui-cells__title">信息</view>
+        <view class="weui-cells__title">相关信息</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
