@@ -21,13 +21,58 @@ Page({
   },
   onHide:data=>{
     console.log("页面隐藏");
+    wx.closeSocket({
+    })
+    wx.onSocketClose(function (res) {
+      console.log('WebSocket连接已关闭！')
+    })
   },
   onShow:data=>{
     console.log("页面显示")
+    /*
+    wx.request({
+      url: 'http://ajacker.tpddns.cn:8080/TestServlet',
+      success: function (res) {
+        console.log("request成功    信息为:"),
+        console.log(res.data),
+        console.log("状态码:"+res.statusCode)
+      },
+      data:[],
+      method:'POST',
+      data: { ID: "111", Name:"jack" },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+       },
+      dataType:"json",
+      fail: function () {
+        console.log("request失败")
+      }
+    })
+    wx.connectSocket({
+      url: 'ws://ajacker.tpddns.cn:8080/websocket',
+      method:"GET",
+    })
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+      wx.sendSocketMessage({
+        data: '你好啊~~',
+        success: function () {
+          console.log("成功发送")
+        },
+        fail: function () {
+          console.log("发送失败")
+        }
+      })
+    })
+    wx.onSocketMessage(function(res){
+      console.log('服务端发送的消息:'+res.data)
+    })
+    */
   },
   changeData:function () {
       this.setData({
         test:"OK"
       })
   }
+
 })

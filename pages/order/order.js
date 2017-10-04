@@ -2,6 +2,18 @@ Page({
   data: {
     showTopTips: false,
 
+    Info:{
+    Sex:'女',
+    School:'文学院',
+    Name:'',
+    QQ:'',
+    Tel:'',
+    Date:'2016-09-01',
+    Time:'12:01',
+    Type:'',
+    Problem:''
+    },
+
     radioItems: [
       { name: '男', value: '男' },
       { name: '女', value: '女', checked: true }
@@ -36,31 +48,69 @@ Page({
     date: "2016-09-01",
     time: "12:01",
 
-    countryCodes: ["+86", "+80", "+84", "+87"],
-    countryCodeIndex: 0,
-
-    countries: ["中国", "美国", "英国"],
-    countryIndex: 0,
-
-    accounts: ["微信号", "QQ", "Email"],
-    accountIndex: 0,
-
     isAgree: false
   },
   showTopTips: function () {
+    if (this.data.isAgree && this.data.Info.Name && this.data.Info.QQ && this.data.Info.Tel && this.data.Info.Type && this.data.Info.Problem){//检查是否完成表单
+      console.log(this.data.Info)
+      wx.request({
+        url: 'http://ajacker.tpddns.cn:8080/TestServlet',
+        success: function (res) {
+          wx.showToast({
+            title: '预约成功',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        fail: function () {
+          wx.showModal({
+            title: '预约失败',
+            content: '无法连接到服务器',
+            showCancel: false,
+          })
+        },
+        method: 'POST',
+        data: { //POST表单数据
+          Date: this.data.Info.Date, 
+          Name: this.data.Info.Name,
+          Problem: this.data.Info.Problem, 
+          QQ: this.data.Info.QQ, 
+          School: this.data.Info.School, 
+          Sex: this.data.Info.Sex, 
+          Tel: this.data.Info.Tel, 
+          Time: this.data.Info.Time, 
+          Type: this.data.Info.Type,
+          Info:this.data.Info,
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        dataType: "json",
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '请同意条款并检查未填项',
+        showCancel:false,
+      })
+    }
+
     var that = this;
     this.setData({
       showTopTips: true
     });
+
     setTimeout(function () {
       that.setData({
         showTopTips: false
       });
     }, 3000);
   },
+
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
-
+    this.data.Info.Sex = e.detail.value;//将选择值保存在Sex变量中
+    //console.log(this.data.Info.Sex);
     var radioItems = this.data.radioItems;
     for (var i = 0, len = radioItems.length; i < len; ++i) {
       radioItems[i].checked = radioItems[i].value == e.detail.value;
@@ -72,7 +122,7 @@ Page({
   },
   SchoolChange: function (e) {
     console.log('school发生change事件，携带value值为：', e.detail.value);
-
+    this.data.Info.School = e.detail.value;//将选择值保存在School变量中
     var schools = this.data.Schools;
     for (var i = 0, len = schools.length; i < len; ++i) {
       schools[i].checked = schools[i].value == e.detail.value;
@@ -84,8 +134,7 @@ Page({
   },
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
-    var checkboxItems = this.data.checkboxItems, values = e.detail.value;
+    
     for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
       checkboxItems[i].checked = false;
 
@@ -105,36 +154,32 @@ Page({
     this.setData({
       date: e.detail.value
     })
+    this.data.Info.Date = e.detail.value;//将选择值保存在Date变量中
   },
   bindTimeChange: function (e) {
     this.setData({
       time: e.detail.value
     })
-  },
-  bindCountryCodeChange: function (e) {
-    console.log('picker country code 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      countryCodeIndex: e.detail.value
-    })
-  },
-  bindCountryChange: function (e) {
-    console.log('picker country 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      countryIndex: e.detail.value
-    })
-  },
-  bindAccountChange: function (e) {
-    console.log('picker account 发生选择改变，携带值为', e.detail.value);
-
-    this.setData({
-      accountIndex: e.detail.value
-    })
+    this.data.Info.Time = e.detail.value;//将选择值保存在Time变量中
   },
   bindAgreeChange: function (e) {
     this.setData({
-      isAgree: !!e.detail.value.length
+      isAgree: !!e.detail.value.length//检测是否同意了条款,并作为boolean保存在isAgree变量
     });
+  },
+  bindNameInput:function(e){
+    this.data.Info.Name = e.detail.value;//将键入值保存在Name变量中
+  },
+  bindQQInput: function (e) {
+    this.data.Info.QQ = e.detail.value;//将键入值保存在QQ变量中
+  },
+  bindTelInput: function (e) {
+    this.data.Info.Tel = e.detail.value;//将键入值保存在Tel变量中
+  },
+  bindTypeInput: function (e) {
+    this.data.Info.Type = e.detail.value;//将键入值保存在Type变量中
+  },
+  bindProblemInput: function (e) {
+    this.data.Info.Problem = e.detail.value;//将键入值保存在Problem变量中
   }
 });
