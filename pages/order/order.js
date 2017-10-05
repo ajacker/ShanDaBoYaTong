@@ -45,8 +45,8 @@ Page({
       { name: '国际教育交流学院', value: '国际教育交流学院' }
     ],
 
-    date: "2016-09-01",
-    time: "12:01",
+    date: "2017-10-01",
+    time: "12:00",
 
     isAgree: false
   },
@@ -54,7 +54,7 @@ Page({
     if (this.data.isAgree && this.data.Info.Name && this.data.Info.QQ && this.data.Info.Tel && this.data.Info.Type && this.data.Info.Problem){//检查是否完成表单
       console.log(this.data.Info)
       wx.request({
-        url: 'http://ajacker.tpddns.cn:8080/TestServlet',
+        url: 'http://ajacker.tpddns.cn:8080/OrderGet',
         success: function (res) {
           wx.showToast({
             title: '预约成功',
@@ -71,14 +71,14 @@ Page({
         },
         method: 'POST',
         data: { //POST表单数据
-          Date: this.data.Info.Date, 
+          Date: this.data.Info.Date,
           Name: this.data.Info.Name,
-          Problem: this.data.Info.Problem, 
-          QQ: this.data.Info.QQ, 
-          School: this.data.Info.School, 
-          Sex: this.data.Info.Sex, 
-          Tel: this.data.Info.Tel, 
-          Time: this.data.Info.Time, 
+          Problem: this.data.Info.Problem,
+          QQ: this.data.Info.QQ,
+          School: this.data.Info.School,
+          Sex: this.data.Info.Sex,
+          Tel: this.data.Info.Tel,
+          Time: this.data.Info.Time,
           Type: this.data.Info.Type,
           Info:this.data.Info,
         },
