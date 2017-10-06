@@ -4,7 +4,7 @@
         <view class="page__desc">预约义疗</view>
     </view>
     <view class="page__bd">
-        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+        
 
         <view class="weui-cells__title">性别</view>
         <view class="weui-cells weui-cells_after-title">
